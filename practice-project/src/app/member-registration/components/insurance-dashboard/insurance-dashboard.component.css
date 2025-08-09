@@ -1,0 +1,62 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f6f7fb;
+}
+.toolbar .brand { font-weight: 600; letter-spacing: 0.3px; }
+.toolbar .spacer { flex: 1; }
+.mr-8 { margin-right: 8px; }
+
+.container {
+  width: min(1200px, 92%);
+  margin: 16px auto 32px;
+  display: grid;
+  gap: 16px;
+}
+
+.grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 16px; }
+.grid.two { grid-template-columns: 1fr 1.2fr; }
+.grid.stack { grid-template-columns: 1fr; }
+
+.hero .hero-avatar {
+  background: #e3f2fd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.kpi-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kpi-icon { color: #3f51b5; }
+.kpi-value { font-size: 20px; font-weight: 600; }
+.kpi-label { color: #6b7280; }
+
+.quote-form { display: grid; gap: 12px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.row mat-form-field { width: 100%; }
+.actions { display: flex; gap: 12px; }
+
+.responsive-table { width: 100%; overflow: auto; }
+.status { padding: 2px 8px; border-radius: 12px; font-size: 12px; }
+.status.pending { background: #fff4e5; color: #b4690e; }
+.status.approved { background: #e8f5e9; color: #2e7d32; }
+.status.rejected { background: #ffebee; color: #c62828; }
+
+@media (max-width: 768px) {
+  .kpi-grid { grid-template-columns: 1fr; }
+  .row { grid-template-columns: 1fr; }
+}
+
+

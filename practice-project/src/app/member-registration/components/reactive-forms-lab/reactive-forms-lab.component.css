@@ -1,0 +1,10 @@
+.lab { padding: 12px; display: block; }
+fieldset { border: 1px solid #ddd; margin-bottom: 12px; padding: 12px; border-radius: 6px; }
+legend { font-weight: 600; }
+.row { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+.array-row { display: flex; gap: 8px; align-items: center; margin: 6px 0; }
+label { width: 160px; }
+input, select { padding: 6px 8px; }
+.actions { display: flex; gap: 8px; }
+.error { color: #b00020; font-size: 12px; }
+

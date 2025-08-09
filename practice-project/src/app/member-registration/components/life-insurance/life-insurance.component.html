@@ -1,0 +1,149 @@
+<div class="life-insurance-container">
+  <div class="form-card">
+    <div class="card-header">
+      <h2>Life Insurance Details</h2>
+      <p>Configure your life insurance coverage</p>
+    </div>
+
+    <form [formGroup]="insuranceForm" class="insurance-form">
+      <!-- Life Type Selection -->
+      <div class="life-type-selection">
+        <h3>Select Life Type</h3>
+        <div class="life-type-options">
+          <div class="life-type-option" 
+               [class.selected]="selectedLifeType === 'single'"
+               (click)="insuranceForm.patchValue({lifeType: 'single'})">
+            <div class="option-content">
+              <div class="option-icon">👤</div>
+              <div class="option-text">
+                <h4>Single Life</h4>
+                <p>Coverage for one person</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="life-type-option" 
+               [class.selected]="selectedLifeType === 'joint'"
+               (click)="insuranceForm.patchValue({lifeType: 'joint'})">
+            <div class="option-content">
+              <div class="option-icon">👥</div>
+              <div class="option-text">
+                <h4>Joint Life</h4>
+                <p>Coverage for two persons</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Primary Life Section -->
+      <div class="life-section">
+        <h3>Primary Life Sum Assured</h3>
+        <div class="form-fields-container">
+          <!-- Primary Death Benefit Input (Editable) -->
+          <div class="form-field-item">
+            <label for="primaryDeathBenefit" class="field-label">
+              Death Benefit Sum Assured
+              <span class="required">*</span>
+            </label>
+
+            <input 
+              id="primaryDeathBenefit"
+              formControlName="primaryDeathBenefit"
+              type="number"
+              class="form-input editable"
+              [class.valid]="isPrimaryDeathBenefitValid()"
+              placeholder="Enter Death Benefit Amount"
+              min="0"
+            />
+
+            <div class="helper-text info">
+              {{ getPrimaryDeathBenefitHelperText() }}
+            </div>
+
+            <!-- Error Message -->
+            <div *ngIf="insuranceForm.get('primaryDeathBenefit')?.invalid && insuranceForm.get('primaryDeathBenefit')?.touched" class="error-message">
+              <span *ngIf="insuranceForm.get('primaryDeathBenefit')?.errors?.['required']">Death Benefit is required</span>
+              <span *ngIf="insuranceForm.get('primaryDeathBenefit')?.errors?.['min']">Death Benefit must be greater than 0</span>
+            </div>
+          </div>
+
+          <!-- Primary Critical Illness Input (Auto-calculated) -->
+          <div class="form-field-item">
+            <label for="primaryCriticalIllness" class="field-label">
+              Critical Illness Sum Assured
+            </label>
+
+            <input 
+              id="primaryCriticalIllness"
+              formControlName="primaryCriticalIllness"
+              type="number"
+              class="form-input calculated"
+              readonly
+              placeholder="Auto-calculated"
+            />
+
+            <div class="helper-text info">
+              Auto-calculated based on Death Benefit
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Life Section (Only for Joint Life) -->
+      <div class="life-section" *ngIf="selectedLifeType === 'joint'">
+        <h3>Secondary Life Sum Assured</h3>
+        <div class="form-fields-container">
+          <!-- Secondary Death Benefit Input (Editable) -->
+          <div class="form-field-item">
+            <label for="secondaryDeathBenefit" class="field-label">
+              Death Benefit Sum Assured
+            </label>
+
+            <input 
+              id="secondaryDeathBenefit"
+              formControlName="secondaryDeathBenefit"
+              type="number"
+              class="form-input editable"
+              [class.valid]="isSecondaryDeathBenefitValid()"
+              placeholder="Enter Secondary Death Benefit Amount"
+              min="0"
+            />
+
+            <div class="helper-text info">
+              {{ getSecondaryDeathBenefitHelperText() }}
+            </div>
+
+            <!-- Error Message -->
+            <div *ngIf="insuranceForm.get('secondaryDeathBenefit')?.invalid && insuranceForm.get('secondaryDeathBenefit')?.touched" class="error-message">
+              <span *ngIf="insuranceForm.get('secondaryDeathBenefit')?.errors?.['min']">Death Benefit must be greater than 0</span>
+            </div>
+          </div>
+
+          <!-- Secondary Critical Illness Input (Auto-calculated) -->
+          <div class="form-field-item">
+            <label for="secondaryCriticalIllness" class="field-label">
+              Critical Illness Sum Assured
+            </label>
+
+            <input 
+              id="secondaryCriticalIllness"
+              formControlName="secondaryCriticalIllness"
+              type="number"
+              class="form-input calculated"
+              readonly
+              placeholder="Auto-calculated"
+            />
+
+            <div class="helper-text info">
+              Auto-calculated based on Death Benefit
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Validation Summary -->
+
+    </form>
+  </div>
+</div>

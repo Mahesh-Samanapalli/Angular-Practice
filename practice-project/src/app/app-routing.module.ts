@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MemberRegistrationComponent } from './member-registration/member-registration.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path:'pre-uw-gcp',component:MemberRegistrationComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
