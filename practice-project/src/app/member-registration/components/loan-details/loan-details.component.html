@@ -1,0 +1,35 @@
+<div class="loan-details-container">
+  <div class="form-card">
+    <div class="card-header">
+      <h2>Loan Details</h2>
+      <p>Please provide your loan information</p>
+    </div>
+
+    <form [formGroup]="loanForm" (ngSubmit)="onSubmit()" class="loan-form">
+      <div class="form-fields-container">
+        <ng-container *ngFor="let field of fieldConfig">
+          <div class="form-field-item">
+            <label [for]="field.paramName" class="field-label">
+              {{ field.paramLabel }}
+              <span *ngIf="field.paramRequired" class="required">*</span>
+            </label>
+
+            <input 
+              [id]="field.paramName"
+              [formControlName]="field.paramName"
+              [type]="getFieldType(field)"
+              class="form-input"
+              [placeholder]="field.paramPlaceholder"
+              [disabled]="field.isDisabled"
+            />
+
+            <!-- Error Message -->
+            <div *ngIf="getFieldError(field.paramName)" class="error-message">
+              {{ getFieldError(field.paramName) }}
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </form>
+  </div>
+</div>

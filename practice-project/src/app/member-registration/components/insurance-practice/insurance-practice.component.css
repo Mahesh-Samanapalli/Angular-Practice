@@ -1,0 +1,11 @@
+.page { min-height: 100vh; background: #f6f7fb; }
+.container { width: min(1200px, 92%); margin: 16px auto 32px; display: grid; gap: 16px; }
+.grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 16px; }
+.grid.two { grid-template-columns: 1fr 1.2fr; }
+.kpi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+@media (max-width: 768px) {
+  .grid, .grid.two { grid-template-columns: 1fr; }
+  .kpi-grid { grid-template-columns: 1fr; }
+}
+
+

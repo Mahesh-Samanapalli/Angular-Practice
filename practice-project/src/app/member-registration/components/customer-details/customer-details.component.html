@@ -1,0 +1,152 @@
+<div class="customer-details-container">
+  <div class="form-card">
+    <div class="card-header">
+      <h2>Student Details</h2>
+      <p>Please provide your personal information</p>
+    </div>
+
+    <form [formGroup]="customerForm" class="customer-form">
+      <!-- Primary Life Assured -->
+      <div class="life-assured-section">
+        <h3>Primary Life Assured</h3>
+        <div class="form-fields-container">
+          <ng-container *ngFor="let field of fieldConfig">
+            <div class="form-field-item">
+              <label [for]="field.paramName" class="field-label">
+                {{ field.paramLabel }}
+                <span *ngIf="field.paramRequired" class="required">*</span>
+              </label>
+
+              <!-- Input field for most types -->
+              <input 
+                *ngIf="field.paramType !== 'SELECT' && field.paramType !== 'TEXTAREA'"
+                [id]="field.paramName"
+                [formControlName]="field.paramName"
+                [type]="getFieldType(field)"
+                class="form-input"
+                [placeholder]="field.paramPlaceholder"
+                [disabled]="field.isDisabled"
+              />
+
+              <!-- Select field for Gender -->
+              <select 
+                *ngIf="field.paramType === 'SELECT'"
+                [id]="field.paramName"
+                [formControlName]="field.paramName"
+                class="form-select"
+                [disabled]="field.isDisabled"
+              >
+                <option value="" disabled selected>{{ field.paramPlaceholder }}</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+
+              <!-- Textarea for Permanent Address -->
+              <textarea 
+                *ngIf="field.paramType === 'TEXTAREA'"
+                [id]="field.paramName"
+                [formControlName]="field.paramName"
+                class="form-textarea"
+                [placeholder]="field.paramPlaceholder"
+                [disabled]="field.isDisabled"
+                rows="3"
+              ></textarea>
+
+              <!-- Error Message -->
+              <div *ngIf="getFieldError(field.paramName)" class="error-message">
+                {{ getFieldError(field.paramName) }}
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Secondary Life Assured (Only for Joint Life) -->
+      <div class="life-assured-section" *ngIf="isJointLife">
+        <h3>Secondary Life Assured</h3>
+        <div class="form-fields-container">
+          <ng-container *ngFor="let field of fieldConfig">
+            <div class="form-field-item">
+              <label [for]="'SECONDARY_' + field.paramName" class="field-label">
+                {{ field.paramLabel }}
+                <span *ngIf="isJointLife && field.paramRequired" class="required">*</span>
+              </label>
+
+              <!-- Input field for most types -->
+              <input 
+                *ngIf="field.paramType !== 'SELECT' && field.paramType !== 'TEXTAREA'"
+                [id]="'SECONDARY_' + field.paramName"
+                [formControlName]="'SECONDARY_' + field.paramName"
+                [type]="getFieldType(field)"
+                class="form-input"
+                [placeholder]="field.paramPlaceholder"
+                [disabled]="field.isDisabled"
+              />
+
+              <!-- Select field for Gender -->
+              <select 
+                *ngIf="field.paramType === 'SELECT'"
+                [id]="'SECONDARY_' + field.paramName"
+                [formControlName]="'SECONDARY_' + field.paramName"
+                class="form-select"
+                [disabled]="field.isDisabled"
+              >
+                <option value="" disabled selected>{{ field.paramPlaceholder }}</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+
+              <!-- Textarea for Permanent Address -->
+              <textarea 
+                *ngIf="field.paramType === 'TEXTAREA'"
+                [id]="'SECONDARY_' + field.paramName"
+                [formControlName]="'SECONDARY_' + field.paramName"
+                class="form-textarea"
+                [placeholder]="field.paramPlaceholder"
+                [disabled]="field.isDisabled"
+                rows="3"
+              ></textarea>
+
+              <!-- Error Message -->
+              <div *ngIf="getFieldError('SECONDARY_' + field.paramName)" class="error-message">
+                {{ getFieldError('SECONDARY_' + field.paramName) }}
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Current Address Section -->
+      <div class="current-address-section">
+        <div class="address-checkbox">
+          <input 
+            type="checkbox" 
+            id="sameAsPermanent" 
+            [formControlName]="'sameAsPermanent'"
+            class="address-checkbox-input"
+          />
+          <label for="sameAsPermanent" class="address-checkbox-label">
+            Current address same as permanent address
+          </label>
+        </div>
+      </div>
+
+      <!-- Secondary Current Address Section (Only for Joint Life) -->
+      <div class="current-address-section" *ngIf="isJointLife">
+        <div class="address-checkbox">
+          <input 
+            type="checkbox" 
+            id="secondarySameAsPermanent" 
+            [formControlName]="'secondarySameAsPermanent'"
+            class="address-checkbox-input"
+          />
+          <label for="secondarySameAsPermanent" class="address-checkbox-label">
+            Secondary life assured current address same as permanent address
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

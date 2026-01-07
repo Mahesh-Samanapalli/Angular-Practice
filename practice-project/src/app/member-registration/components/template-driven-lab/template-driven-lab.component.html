@@ -1,0 +1,164 @@
+<div class="lab">
+  <h3>Template-Driven Forms Lab: Nominee Details</h3>
+
+  <form #nomineeForm="ngForm" (ngSubmit)="onSubmit(nomineeForm)" novalidate>
+    <fieldset>
+      <legend>Nominees</legend>
+
+      <!-- This container will hold the dynamically added nominee forms -->
+      <div *ngFor="let nominee of nominees; let i = index" class="nominee-card">
+        <h4>Nominee #{{ i + 1 }}</h4>
+
+        <!-- Unique ngModelGroup for each nominee in the array -->
+        <div ngModelGroup="nominee-{{ i }}" class="nominee-form-grid">
+          
+          <!-- Name -->
+          <div class="form-field">
+            <label [for]="'name-' + i">Name</label>
+            <input
+              type="text"
+              [id]="'name-' + i"
+              [name]="'name-' + i"
+              [(ngModel)]="nominee.name"
+              #name="ngModel"
+              required
+              minlength="2"
+            />
+            <div *ngIf="name.invalid && name.touched" class="error">
+              <small *ngIf="name.errors?.['required']">Name is required.</small>
+              <small *ngIf="name.errors?.['minlength']">Must be at least 2 chars.</small>
+            </div>
+          </div>
+
+          <!-- Gender -->
+          <div class="form-field">
+            <label [for]="'gender-' + i">Gender</label>
+            <select
+              [id]="'gender-' + i"
+              [name]="'gender-' + i"
+              [(ngModel)]="nominee.gender"
+              #gender="ngModel"
+              required
+            >
+              <option value="" disabled>Select Gender</option>
+              <option *ngFor="let g of genders" [value]="g">{{ g | titlecase }}</option>
+            </select>
+            <div *ngIf="gender.invalid && gender.touched" class="error">
+              <small *ngIf="gender.errors?.['required']">Gender is required.</small>
+            </div>
+          </div>
+
+          <!-- Date of Birth -->
+          <div class="form-field">
+            <label [for]="'dob-' + i">Date of Birth</label>
+            <input
+              type="date"
+              [id]="'dob-' + i"
+              [name]="'dob-' + i"
+              [(ngModel)]="nominee.dateOfBirth"
+              #dob="ngModel"
+              required
+            />
+            <div *ngIf="dob.invalid && dob.touched" class="error">
+              <small *ngIf="dob.errors?.['required']">Date of Birth is required.</small>
+            </div>
+          </div>
+
+          <!-- Relationship -->
+          <div class="form-field">
+            <label [for]="'relationship-' + i">Relationship</label>
+            <select
+              [id]="'relationship-' + i"
+              [name]="'relationship-' + i"
+              [(ngModel)]="nominee.relationship"
+              #relationship="ngModel"
+              required
+            >
+              <option value="" disabled>Select Relationship</option>
+              <option *ngFor="let rel of relationships" [value]="rel">{{ rel | titlecase }}</option>
+            </select>
+            <div *ngIf="relationship.invalid && relationship.touched" class="error">
+              <small *ngIf="relationship.errors?.['required']">Relationship is required.</small>
+            </div>
+          </div>
+
+          <!-- Mobile Number -->
+          <div class="form-field">
+            <label [for]="'mobile-' + i">Mobile Number</label>
+            <input
+              type="tel"
+              [id]="'mobile-' + i"
+              [name]="'mobile-' + i"
+              [(ngModel)]="nominee.mobileNumber"
+              #mobile="ngModel"
+              required
+              pattern="^[0-9]{10}$"
+            />
+            <div *ngIf="mobile.invalid && mobile.touched" class="error">
+              <small *ngIf="mobile.errors?.['required']">Mobile number is required.</small>
+              <small *ngIf="mobile.errors?.['pattern']">Must be a 10-digit number.</small>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-field">
+            <label [for]="'email-' + i">Email</label>
+            <input
+              type="email"
+              [id]="'email-' + i"
+              [name]="'email-' + i"
+              [(ngModel)]="nominee.email"
+              #email="ngModel"
+              required
+              pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            />
+            <div *ngIf="email.invalid && email.touched" class="error">
+              <small *ngIf="email.errors?.['required']">Email is required.</small>
+              <small *ngIf="email.errors?.['pattern']">Invalid email format.</small>
+            </div>
+          </div>
+
+          <!-- Percentage -->
+          <div class="form-field">
+            <label [for]="'percentage-' + i">Percentage</label>
+            <input
+              type="number"
+              [id]="'percentage-' + i"
+              [name]="'percentage-' + i"
+              [(ngModel)]="nominee.percentage"
+              #percentage="ngModel"
+              (ngModelChange)="validatePercentage()"
+              required
+              min="1"
+              max="100"
+            />
+            <div *ngIf="percentage.invalid && percentage.touched" class="error">
+              <small *ngIf="percentage.errors?.['required']">Percentage is required.</small>
+              <small *ngIf="percentage.errors?.['min'] || percentage.errors?.['max']">Must be between 1-100.</small>
+            </div>
+          </div>
+
+        </div>
+        <button type="button" class="remove-btn" (click)="removeNominee(i)">Remove Nominee</button>
+      </div>
+
+      <!-- Button to add a new nominee -->
+      <div class="actions">
+        <button type="button" (click)="addNominee()">Add Nominee</button>
+      </div>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit" [disabled]="nomineeForm.invalid">Submit</button>
+    </div>
+  </form>
+
+  <hr>
+  <h4>Live Form State</h4>
+  <pre>Form Touched: {{ nomineeForm.touched }}</pre>
+  <pre>Form Valid: {{ nomineeForm.valid }}</pre>
+  <h4>Live Form Value</h4>
+  <pre>{{ nomineeForm.value | json }}</pre>
+  <h4>Live Component Model</h4>
+  <pre>{{ nominees | json }}</pre>
+</div>
