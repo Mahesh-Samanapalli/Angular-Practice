@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { MemberRegistrationRoutingModule } from './member-registration-routing.module';
 import { MemberRegistrationComponent } from './member-registration.component';
@@ -25,6 +26,7 @@ import { ReactiveFormsLabComponent } from './components/reactive-forms-lab/react
 import { FormsPlaygroundComponent } from './components/forms-playground/forms-playground.component';
 import { InsuranceDashboardComponent } from './components/insurance-dashboard/insurance-dashboard.component';
 import { InsurancePracticeComponent } from './components/insurance-practice/insurance-practice.component';
+import { TemplateDrivenLabComponent } from './components/template-driven-lab/template-driven-lab.component';
 
 
 @NgModule({
@@ -39,12 +41,14 @@ import { InsurancePracticeComponent } from './components/insurance-practice/insu
     ReactiveFormsLabComponent,
     FormsPlaygroundComponent,
     InsuranceDashboardComponent,
-    InsurancePracticeComponent
+    InsurancePracticeComponent,
+    TemplateDrivenLabComponent
   ],
   imports: [
     CommonModule,
     MemberRegistrationRoutingModule,
     RouterModule,
+    FormsModule,
     ReactiveFormsModule,
     LayoutModule,
     MatToolbarModule,
@@ -55,7 +59,8 @@ import { InsurancePracticeComponent } from './components/insurance-practice/insu
     MatInputModule,
     MatSelectModule,
     MatTableModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSnackBarModule
   ]
 })
 export class MemberRegistrationModule { }

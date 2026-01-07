@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidationService, uniquePanValidator } from '../../services/validation-service.service';
 
 type DynamicFieldType = 'text' | 'number' | 'select';
 
@@ -40,7 +41,10 @@ export class ReactiveFormsLabComponent implements OnInit {
     }
   ];
 
-  constructor(private readonly formBuilder: FormBuilder) {}
+  constructor(
+    private readonly formBuilder: FormBuilder,
+    private readonly validationService: ValidationService
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -60,7 +64,14 @@ export class ReactiveFormsLabComponent implements OnInit {
       businessTurnover: [{ value: null, disabled: true }, [Validators.min(0)]],
 
       // dynamic area based on config
-      panNumber: [''],
+      panNumber: [
+        '',
+        {
+          validators: [Validators.pattern(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/)],
+          asyncValidators: [uniquePanValidator(this.validationService)],
+          updateOn: 'blur'
+        }
+      ],
       educationLevel: ['bachelors'],
 
       // nested FormArray examples

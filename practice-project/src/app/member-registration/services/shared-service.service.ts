@@ -15,21 +15,21 @@ export class SharedServiceService {
       "header": "LOAN_DETAILS",
       "paramValues":[
         {
-          "paramName":"LOAN_ACCOUNT_NUMBER",
+          "paramName":"LOAN_TERM",
           "paramType":"TEXT",
           "paramValue":"",
-          "paramLabel":"Loan Account Number",
-          "paramPlaceholder":"Enter Loan Account Number",
+          "paramLabel":"Loan Term",
+          "paramPlaceholder":"Enter Loan Term",
           "paramRequired":true,
           "isDisabled":false,
           "paramValidation":[]
         },
         {
-          "paramName":"LOAN_TERM",
+          "paramName":"LOAN_ACCOUNT_NUMBER",
           "paramType":"NUMBER",
           "paramValue":"",
-          "paramLabel":"Loan Term",
-          "paramPlaceholder":"Enter Loan Account Term",
+          "paramLabel":"Loan Account Number",
+          "paramPlaceholder":"Enter Loan Account Number",
           "paramRequired":true,
           "isDisabled":false,
           "paramValidation":[]

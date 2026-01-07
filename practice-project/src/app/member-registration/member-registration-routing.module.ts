@@ -5,11 +5,13 @@ import { ReactiveFormsLabComponent } from './components/reactive-forms-lab/react
 import { FormsPlaygroundComponent } from './components/forms-playground/forms-playground.component';
 import { InsuranceDashboardComponent } from './components/insurance-dashboard/insurance-dashboard.component';
 import { InsurancePracticeComponent } from './components/insurance-practice/insurance-practice.component';
+import { TemplateDrivenLabComponent } from './components/template-driven-lab/template-driven-lab.component';
 
 const routes: Routes = [
   { path: '', component: MphMemberRegistrationComponent },
   { path: 'mph-member', component: MphMemberRegistrationComponent },
   { path: 'forms-lab', component: ReactiveFormsLabComponent },
+  { path: 'template-driven-lab', component: TemplateDrivenLabComponent },
   { path: 'forms-play', component: FormsPlaygroundComponent }
   ,
   { path: 'insurance/dashboard', component: InsuranceDashboardComponent },

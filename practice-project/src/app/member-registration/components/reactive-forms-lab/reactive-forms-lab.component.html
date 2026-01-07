@@ -58,6 +58,20 @@
               <option *ngFor="let opt of field.options" [value]="opt.value">{{ opt.label }}</option>
             </select>
           </ng-container>
+
+          <!-- ++ Begin Validation Block for PAN Number ++ -->
+          <ng-container *ngIf="field.controlName === 'panNumber'">
+            <small class="info" *ngIf="getControl('panNumber')?.status === 'PENDING'">
+              Checking uniqueness...
+            </small>
+            <small class="error" *ngIf="getControl('panNumber')?.hasError('pattern')">
+              PAN format must be ABCDE1234F.
+            </small>
+            <small class="error" *ngIf="getControl('panNumber')?.hasError('panExists')">
+              This PAN number is already taken.
+            </small>
+          </ng-container>
+          <!-- ++ End Validation Block ++ -->
         </div>
       </ng-container>
     </fieldset>
