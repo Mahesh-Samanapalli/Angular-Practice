@@ -12,8 +12,12 @@ const routes: Routes = [
   { path: 'mph-member', component: MphMemberRegistrationComponent },
   { path: 'forms-lab', component: ReactiveFormsLabComponent },
   { path: 'template-driven-lab', component: TemplateDrivenLabComponent },
-  { path: 'forms-play', component: FormsPlaygroundComponent }
-  ,
+  { path: 'forms-play', component: FormsPlaygroundComponent },
+  {
+    path: 'playground',
+    loadChildren: () =>
+      import('./playground/playground.module').then(m => m.PlaygroundModule)
+  },
   { path: 'insurance/dashboard', component: InsuranceDashboardComponent },
   { path: 'insurance/practice', component: InsurancePracticeComponent }
 ];

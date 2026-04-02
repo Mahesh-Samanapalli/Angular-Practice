@@ -1,0 +1,222 @@
+<div class="profile-form-container">
+  <form class="profile-form" [formGroup]="profileFormWithoutFormBuilder" (ngSubmit)="onSubmit()">
+    <div class="form-card">
+      <div class="card-header">
+        <h2>User Profile Form</h2>
+        <p>Complete your profile information</p>
+      </div>
+
+      <!-- Personal Information Section -->
+      <div class="profile-section">
+        <h3>Personal Information</h3>
+        <div class="form-fields-container">
+          <div class="form-field-item">
+            <label for="firstName" class="field-label">
+              First Name
+              <span class="required">*</span>
+            </label>
+            <input 
+              id="firstName"
+              type="text"
+              class="form-input"
+              placeholder="Enter your first name"
+              formControlName="firstName"
+            />
+          </div>
+
+          <div class="form-field-item">
+            <label for="lastName" class="field-label">
+              Last Name
+              <span class="required">*</span>
+            </label>
+            <input 
+              id="lastName"
+              type="text"
+              class="form-input"
+              placeholder="Enter your last name"
+              formControlName="lastName"
+            />
+          </div>
+
+          <div class="form-field-item">
+            <label for="email" class="field-label">
+              Email
+              <span class="required">*</span>
+            </label>
+            <input 
+              id="email"
+              type="email"
+              class="form-input"
+              placeholder="Enter your email"
+              formControlName="email"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Password Section -->
+      <div class="profile-section">
+        <h3>Password</h3>
+        <div class="form-fields-container">
+          <div class="form-field-item">
+            <label for="password" class="field-label">
+              Password
+              <span class="required">*</span>
+            </label>
+            <input 
+              id="password"
+              type="password"
+              class="form-input"
+              placeholder="Enter password (minimum 6 characters)"
+              formControlName="password"
+            />
+          </div>
+
+          <div class="form-field-item">
+            <label for="confirmPassword" class="field-label">
+              Confirm Password
+              <span class="required">*</span>
+            </label>
+            <input 
+              id="confirmPassword"
+              type="password"
+              class="form-input"
+              placeholder="Confirm password"
+              formControlName="confirmPassword"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Address Section -->
+      <div class="profile-section">
+        <h3>Address</h3>
+        <div class="form-fields-container" formGroupName="address">
+          <div class="form-field-item">
+            <label for="street" class="field-label">
+              Street
+              <span class="required">*</span>
+            </label>
+            <input 
+              id="street"
+              type="text"
+              class="form-input"
+              placeholder="Enter street address"
+              formControlName="street"
+            />
+          </div>
+
+          <div class="form-field-item">
+            <label for="city" class="field-label">
+              City
+              <span class="required">*</span>
+            </label>
+            <input 
+              id="city"
+              type="text"
+              class="form-input"
+              placeholder="Enter city"
+              formControlName="city"
+            />
+          </div>
+
+          <div class="form-field-item">
+            <label for="state" class="field-label">
+              State
+              <span class="required">*</span>
+            </label>
+            <input 
+              id="state"
+              type="text"
+              class="form-input"
+              placeholder="Enter state"
+              formControlName="state"
+            />
+          </div>
+
+          <div class="form-field-item">
+            <label for="zip" class="field-label">
+              Zip Code
+              <span class="required">*</span>
+            </label>
+            <input 
+              id="zip"
+              type="text"
+              class="form-input"
+              placeholder="Enter 5-digit zip code"
+              formControlName="zip"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills Section -->
+      <div class="profile-section">
+        <h3>Skills</h3>
+        <div class="form-fields-container">
+          <div class="form-field-item full-width">
+            <label for="skillInput" class="field-label">Add Skill</label>
+            <div class="input-with-button">
+              <input 
+                id="skillInput"
+                type="text"
+                class="form-input"
+                placeholder="Enter a skill"
+                #skillInput
+              />
+              <button type="button" class="add-button" (click)="addSkill(skillInput.value); skillInput.value = '';">
+                Add Skill
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="form-fields-container" *ngIf="skills.length > 0">
+          <div *ngFor="let skill of skills.controls; let i = index" class="skill-badge">
+            {{ skill.value }}
+            <span class="remove-badge" (click)="removeSkill(i)">×</span>
+          </div>
+        </div>
+        <div *ngIf="skills.length === 0" class="empty-state">
+          <p>No skills added yet</p>
+        </div>
+      </div>
+
+      <!-- Emergency Contact Section -->
+      <div class="profile-section">
+        <h3>Emergency Contact</h3>
+        <div class="form-fields-container">
+          <div class="form-field-item full-width">
+            <label for="contactInput" class="field-label">Add Contact</label>
+            <div class="input-with-button">
+              <input 
+                id="contactInput"
+                type="text"
+                class="form-input"
+                placeholder="Enter emergency contact"
+                #contactInput
+              />
+              <button type="button" class="add-button" (click)="addContact(contactInput.value); contactInput.value = '';">
+                Add Contact
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="form-fields-container " *ngIf="emergencyContact.length > 0">
+          <div *ngFor="let contact of emergencyContact.controls; let i = index" class="contact-badge">
+            {{ contact.value }}
+            <span class="remove-badge" (click)="removeContact(i)">×</span>
+          </div>
+        </div>
+        <div class="empty-state" *ngIf="emergencyContact.length === 0">
+          <p>No emergency contacts added yet</p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="form-actions">
+        <button type="submit" class="btn-submit">Submit</button>
+        <button type="button" class="btn-reset" (click)="resetForm()">Reset</button>
+      </div>
+    </div>
+  </form>
+</div>

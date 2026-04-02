@@ -1,0 +1,43 @@
+<article class="lab-card">
+  <h3>FormBuilder Lab</h3>
+  <p>Goal: build nested groups and apply basic validations.</p>
+
+  <form [formGroup]="profileForm" (ngSubmit)="save()" class="form-grid">
+    <label>
+      First name
+      <input type="text" formControlName="firstName" />
+      <small *ngIf="profileForm.get('firstName')?.touched && profileForm.get('firstName')?.invalid">First name is required (min 2 chars).</small>
+    </label>
+
+    <label>
+      Last name
+      <input type="text" formControlName="lastName" />
+      <small *ngIf="profileForm.get('lastName')?.touched && profileForm.get('lastName')?.invalid">Last name is required.</small>
+    </label>
+
+    <label>
+      Email
+      <input type="email" formControlName="email" />
+      <small *ngIf="profileForm.get('email')?.touched && profileForm.get('email')?.invalid">Enter a valid email address.</small>
+    </label>
+
+    <div formGroupName="address" class="address-grid">
+      <label>
+        City
+        <input type="text" formControlName="city" />
+      </label>
+      <label>
+        State
+        <input type="text" formControlName="state" />
+      </label>
+      <label>
+        Zip
+        <input type="text" formControlName="zip" />
+      </label>
+    </div>
+
+    <button type="submit">Save</button>
+  </form>
+
+  <pre *ngIf="submitted">{{ profileForm.value | json }}</pre>
+</article>

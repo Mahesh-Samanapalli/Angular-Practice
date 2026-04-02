@@ -1,0 +1,38 @@
+.lab-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #ffffff;
+}
+
+.form-grid,
+.contacts-grid,
+.contact-row {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.contact-row {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  align-items: end;
+  border: 1px solid #e2e8f0;
+  padding: 0.75rem;
+  border-radius: 6px;
+}
+
+label {
+  display: grid;
+  gap: 0.25rem;
+}
+
+input,
+select {
+  padding: 0.45rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+}
