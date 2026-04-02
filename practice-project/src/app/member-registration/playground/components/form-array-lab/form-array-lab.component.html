@@ -1,0 +1,38 @@
+<article class="lab-card">
+  <h3>FormArray Lab</h3>
+  <p>Goal: create dynamic controls with add and remove actions.</p>
+
+  <form [formGroup]="applicantForm" (ngSubmit)="save()" class="form-grid">
+    <label>
+      Applicant Name
+      <input type="text" formControlName="applicantName" />
+    </label>
+
+    <div formArrayName="contacts" class="contacts-grid">
+      <div class="contact-row" *ngFor="let contact of contacts.controls; let i = index" [formGroup]="asControl(contact)">
+        <label>
+          Type
+          <select formControlName="type">
+            <option value="Phone">Phone</option>
+            <option value="Email">Email</option>
+            <option value="Office">Office</option>
+          </select>
+        </label>
+
+        <label>
+          Value
+          <input type="text" formControlName="value" />
+        </label>
+
+        <button type="button" (click)="removeContact(i)">Remove</button>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="button" (click)="addContact()">Add Contact</button>
+      <button type="submit">Save</button>
+    </div>
+  </form>
+
+  <pre *ngIf="submitted">{{ applicantForm.value | json }}</pre>
+</article>

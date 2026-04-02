@@ -1,0 +1,25 @@
+<article class="lab-card">
+  <h3>OnPush Change Detection Lab</h3>
+  <p>Goal: update arrays immutably and render with trackBy.</p>
+
+  <div class="new-task">
+    <input
+      type="text"
+      [(ngModel)]="taskDraft"
+      placeholder="Add optimization task"
+      name="taskDraft"
+    />
+    <button type="button" (click)="addTask()">Add</button>
+  </div>
+
+  <ul>
+    <li *ngFor="let task of tasks; trackBy: trackByTask">
+      <label>
+        <input type="checkbox" [checked]="task.done" (change)="toggleDone(task.id)" />
+        <span [class.done]="task.done">{{ task.title }}</span>
+      </label>
+    </li>
+  </ul>
+
+  <p><strong>Practice:</strong> try mutating an object directly and observe why immutable update is preferred with OnPush.</p>
+</article>

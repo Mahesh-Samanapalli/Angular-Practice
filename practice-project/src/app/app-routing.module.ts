@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MemberRegistrationComponent } from './member-registration/member-registration.component';
 
 const routes: Routes = [
-  {path:'pre-uw-gcp',component:MemberRegistrationComponent}
+  {path:'pre-uw-gcp',component:MemberRegistrationComponent},
+  {path:'',redirectTo:'pre-uw-gcp',pathMatch:'full'},
 ];
 
 @NgModule({

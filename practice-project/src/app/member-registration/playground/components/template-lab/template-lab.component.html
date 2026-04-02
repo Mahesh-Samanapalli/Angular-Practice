@@ -1,0 +1,37 @@
+<article class="lab-card">
+  <h3>ng-container and ng-template Lab</h3>
+  <p>Goal: control view states without extra wrapper divs.</p>
+
+  <button type="button" (click)="toggleTips()">Toggle practice tips</button>
+
+  <ng-container *ngIf="showTips; else hideTips">
+    <ul>
+      <li>Use ng-container to avoid extra DOM nodes.</li>
+      <li>Use ng-template for else and reusable chunks.</li>
+      <li>Try ngTemplateOutlet for repeated UI patterns.</li>
+    </ul>
+  </ng-container>
+
+  <ng-template #hideTips>
+    <p>Tips are hidden. Click the button to show them.</p>
+  </ng-template>
+
+  <hr />
+
+  <ng-container *ngIf="isLoading; else contentReady">
+    <p>Loading members...</p>
+  </ng-container>
+
+  <ng-template #contentReady>
+    <ng-container *ngIf="members.length > 0; else emptyList">
+      <h4>Members</h4>
+      <ul>
+        <li *ngFor="let member of members">{{ member }}</li>
+      </ul>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #emptyList>
+    <p>No members found.</p>
+  </ng-template>
+</article>
