@@ -1,0 +1,216 @@
+<div class="profile-form-container">
+  <div class="profile-card">
+    <form class="profile-card-form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <h3>Profile Form</h3>
+      <section class="form-section personal-info-section">
+        <h4>Personal Information</h4>
+        <div class="form-fields-container">
+          <div class="form-field-item">
+            <label for="firstName" class="field-label">
+              First Name
+              <span class="required">*</span>
+            </label>
+            <input
+              id="firstName"
+              type="text"
+              class="form-input"
+              placeholder="Enter your first name"
+              formControlName="firstName"
+            />
+          </div>
+          <div class="form-field-item">
+            <label for="lastName" class="field-label">
+              Last Name
+              <span class="required">*</span>
+            </label>
+            <input
+              id="lastName"
+              type="text"
+              class="form-input"
+              placeholder="Enter your last name"
+              formControlName="lastName"
+            />
+          </div>
+          <div class="form-field-item">
+            <label for="panNumber" class="field-label">
+              PAN Number
+              <span class="required">*</span>
+            </label>
+            <input
+              id="panNumber"
+              type="text"
+              class="form-input"
+              placeholder="Enter your PAN number"
+              formControlName="panNumber"
+            />
+          </div>
+          <div class="form-field-item">
+            <label for="dateOfBirth" class="field-label">
+              Date of Birth
+              <span class="required">*</span>
+            </label>
+            <input
+              id="dateOfBirth"
+              type="text"
+              class="form-input"
+              placeholder="Enter your date of birth"
+              formControlName="dateOfBirth"
+            />
+          </div>
+          <div class="form-field-item">
+            <label for="gender" class="field-label">
+              Gender
+              <span class="required">*</span>
+            </label>
+            <select formControlName="gender">
+              <option value="" disabled selected>Select your gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+        </div>
+      </section>
+      <section class="form-section registration-info-section">
+        <h4>Registration Information</h4>
+        <div class="form-fields-container">
+          <div class="form-field-item">
+            <label for="email" class="field-label">
+              Mail Id
+              <span class="required">*</span>
+            </label>
+            <input
+              id="email"
+              type="email"
+              class="form-input"
+              placeholder="Enter your email"
+              formControlName="email"
+            />
+          </div>
+          <div class="form-field-item">
+            <label for="phoneNumber" class="field-label">
+              Phone Number
+              <span class="required">*</span>
+            </label>
+            <input
+              id="phoneNumber"
+              type="text"
+              class="form-input"
+              placeholder="Enter your phone number"
+              formControlName="phoneNumber"
+            />
+          </div>
+          <div class="form-field-item">
+            <label for="panNumber" class="field-label">
+              Password
+              <span class="required">*</span>
+            </label>
+            <input
+              id="password"
+              type="password"
+              class="form-input"
+              placeholder="Enter your password"
+              formControlName="password"
+            />
+          </div>
+          <div class="form-field-item">
+            <label for="confirmPassword" class="field-label">
+              Confirm Password
+              <span class="required">*</span>
+            </label>
+            <input
+              id="confirmPassword"
+              type="password"
+              class="form-input"
+              placeholder="Enter your confirm password"
+              formControlName="confirmPassword"
+            />
+          </div>
+        </div>
+      </section>
+      <section class="form-section address-section">
+        <h4>Address</h4>
+        <div class="form-fields-container" formGroupName="address">
+          <div class="form-field-item">
+            <label for="street" class="field-label">
+              Street
+              <span class="required">*</span>
+            </label>
+            <input
+              id="street"
+              type="text"
+              class="form-input"
+              placeholder="Enter your street"
+              formControlName="street"
+            />
+          </div>
+          <div class="form-field-item">
+            <label for="city" class="field-label">
+              City
+              <span class="required">*</span>
+            </label>
+            <input
+              id="city"
+              type="text"
+              class="form-input"
+              placeholder="Enter your city"
+              formControlName="city"
+            />
+          </div>
+          <div class="form-field-item">
+            <label for="state" class="field-label">
+              State
+              <span class="required">*</span>
+            </label>
+            <input
+              id="state"
+              type="text"
+              class="form-input"
+              placeholder="Enter your state"
+              formControlName="state"
+            />
+          </div>
+          <div class="form-field-item">
+            <label for="zipCode" class="field-label">
+              Zip Code
+              <span class="required">*</span>
+            </label>
+            <input
+              id="zipCode"
+              type="text"
+              class="form-input"
+              placeholder="Enter your zip code"
+              formControlName="zip"
+            />
+          </div>
+        </div>
+      </section>
+      <section class="form-section skills-section">
+        <h4>Skills</h4>
+        <div class="form-fields-container">
+          <div class="form-field-item">
+            <label for="skillInput" class="field-label">Add a skill</label>
+            <div class="skill-input-container">
+              <input
+                id="skillInput"
+                type="text"
+                class="form-input"
+                placeholder="Enter a skill and press Add"
+              />
+              <button type="button" class="add-skill-button">Add</button>
+              <div class="skill-values-container"  formArrayName="skills" *ngIf="skills.length > 0">
+                <div *ngFor = "let skill of skills.controls; let i = index" class="skill-badge">
+                  {{ skill.value }}
+                  <span class="remove-badge" (click)="removeSkill(i)">×</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </section>
+      <div class="form-actions">
+        <button type="submit" class="btn-submit">Submit</button>
+        <button type="reset" class="btn-reset">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>

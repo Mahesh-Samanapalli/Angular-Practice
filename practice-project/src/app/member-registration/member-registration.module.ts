@@ -27,6 +27,10 @@ import { FormsPlaygroundComponent } from './components/forms-playground/forms-pl
 import { InsuranceDashboardComponent } from './components/insurance-dashboard/insurance-dashboard.component';
 import { InsurancePracticeComponent } from './components/insurance-practice/insurance-practice.component';
 import { TemplateDrivenLabComponent } from './components/template-driven-lab/template-driven-lab.component';
+import { MemberFormComponent } from './components/member-form/member-form.component';
+import { ProfileFormPracticeComponent } from './components/profile-form-practice/profile-form-practice.component';
+import { JobApplicationFormPracticeComponent } from './components/job-application-form-practice/job-application-form-practice.component';
+import { EventRegistrationFormPracticeComponent } from './components/event-registration-form-practice/event-registration-form-practice.component';
 
 
 @NgModule({
@@ -42,7 +46,11 @@ import { TemplateDrivenLabComponent } from './components/template-driven-lab/tem
     FormsPlaygroundComponent,
     InsuranceDashboardComponent,
     InsurancePracticeComponent,
-    TemplateDrivenLabComponent
+    TemplateDrivenLabComponent,
+    MemberFormComponent,
+    ProfileFormPracticeComponent,
+    JobApplicationFormPracticeComponent,
+    EventRegistrationFormPracticeComponent
   ],
   imports: [
     CommonModule,

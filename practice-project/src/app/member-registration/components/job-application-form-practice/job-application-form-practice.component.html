@@ -1,0 +1,110 @@
+<div class="profile-form-container">
+  <div class="profile-card">
+    <form class="profile-card-form" [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+      <h3>Job Application Form</h3>
+
+      <section class="form-section personal-info-section">
+        <h4>Candidate Details</h4>
+        <div class="form-fields-container">
+          <div class="form-field-item">
+            <label for="fullName" class="field-label">Full Name <span class="required">*</span></label>
+            <input id="fullName" type="text" class="form-input" placeholder="Enter full name" formControlName="fullName" />
+          </div>
+          <div class="form-field-item">
+            <label for="jobDob" class="field-label">Date of Birth <span class="required">*</span></label>
+            <input id="jobDob" type="date" class="form-input" formControlName="dateOfBirth" />
+          </div>
+          <div class="form-field-item">
+            <label for="jobGender" class="field-label">Gender <span class="required">*</span></label>
+            <select id="jobGender" class="form-input" formControlName="gender">
+              <option value="">Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-field-item">
+            <label for="yearsOfExperience" class="field-label">Experience (Years) <span class="required">*</span></label>
+            <input id="yearsOfExperience" type="text" class="form-input" placeholder="Example: 4" formControlName="yearsOfExperience" />
+          </div>
+          <div class="form-field-item">
+            <label for="linkedInProfile" class="field-label">LinkedIn URL <span class="required">*</span></label>
+            <input id="linkedInProfile" type="text" class="form-input" placeholder="Paste profile URL" formControlName="linkedInProfile" />
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section registration-info-section">
+        <h4>Application Details</h4>
+        <div class="form-fields-container">
+          <div class="form-field-item">
+            <label for="currentCompany" class="field-label">Current Company <span class="required">*</span></label>
+            <input id="currentCompany" type="text" class="form-input" placeholder="Enter company name" formControlName="currentCompany" />
+          </div>
+          <div class="form-field-item">
+            <label for="expectedCtc" class="field-label">Expected CTC <span class="required">*</span></label>
+            <input id="expectedCtc" type="text" class="form-input" placeholder="Enter expected CTC" formControlName="expectedCtc" />
+          </div>
+          <div class="form-field-item">
+            <label for="noticePeriodDays" class="field-label">Notice Period (Days) <span class="required">*</span></label>
+            <input id="noticePeriodDays" type="text" class="form-input" placeholder="Example: 30" formControlName="noticePeriodDays" />
+          </div>
+          <div class="form-field-item">
+            <label for="jobEmail" class="field-label">Email <span class="required">*</span></label>
+            <input id="jobEmail" type="email" class="form-input" placeholder="Enter email" formControlName="email" />
+          </div>
+          <div class="form-field-item">
+            <label for="jobPhone" class="field-label">Phone Number <span class="required">*</span></label>
+            <input id="jobPhone" type="text" class="form-input" placeholder="Enter phone number" formControlName="phoneNumber" />
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section address-section" formGroupName="address">
+        <h4>Address</h4>
+        <div class="form-fields-container">
+          <div class="form-field-item">
+            <label for="jobStreet" class="field-label">Street <span class="required">*</span></label>
+            <input id="jobStreet" type="text" class="form-input" placeholder="Enter street" formControlName="street" />
+          </div>
+          <div class="form-field-item">
+            <label for="jobCity" class="field-label">City <span class="required">*</span></label>
+            <input id="jobCity" type="text" class="form-input" placeholder="Enter city" formControlName="city" />
+          </div>
+          <div class="form-field-item">
+            <label for="jobState" class="field-label">State <span class="required">*</span></label>
+            <input id="jobState" type="text" class="form-input" placeholder="Enter state" formControlName="state" />
+          </div>
+          <div class="form-field-item">
+            <label for="jobZip" class="field-label">Zip Code <span class="required">*</span></label>
+            <input id="jobZip" type="text" class="form-input" placeholder="Enter zip code" formControlName="zip" />
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section skills-section">
+        <h4>Technologies</h4>
+        <div class="form-fields-container">
+          <div class="form-field-item">
+            <label for="technologyInput" class="field-label">Add Technology</label>
+            <div class="skill-input-container">
+              <input id="technologyInput" type="text" class="form-input" placeholder="Enter technology" #technologyInput />
+              <button type="button" class="add-skill-button" (click)="addTechnology(technologyInput.value); technologyInput.value = ''">Add</button>
+            </div>
+            <div class="skill-values-container" formArrayName="technologies" *ngIf="technologies.length > 0">
+              <div *ngFor="let tech of technologies.controls; let i = index" class="skill-badge">
+                {{ tech.value }}
+                <span class="remove-badge" (click)="removeTechnology(i)">x</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-submit">Submit</button>
+        <button type="reset" class="btn-reset">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>
