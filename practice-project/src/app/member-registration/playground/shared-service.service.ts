@@ -44,11 +44,14 @@ export class SharedServiceService {
   constructor() { }
 
   updateProfileData(data: any) {
-    this.profileData = data;
-    console.log('Profile data updated:', this.profileData);
+    this.profileData = { ...this.profileData, ...data };
   }
 
   getProfileData(): ProfileData {
     return this.profileData;
+  }
+
+  storeProfileData(data: any){
+    this.profileData = data;
   }
 }

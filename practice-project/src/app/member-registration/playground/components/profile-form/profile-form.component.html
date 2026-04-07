@@ -170,7 +170,7 @@
             </div>
           </div>
         </div>
-        <div class="form-fields-container" *ngIf="skills.length > 0">
+        <div class="form-fields-container"  formArrayName="skills" *ngIf="skills.length > 0">
           <div *ngFor="let skill of skills.controls; let i = index" class="skill-badge">
             {{ skill.value }}
             <span class="remove-badge" (click)="removeSkill(i)">×</span>
@@ -201,7 +201,7 @@
             </div>
           </div>
         </div>
-        <div class="form-fields-container " *ngIf="emergencyContact.length > 0">
+        <div class="form-fields-container " formArrayName="emergencyContact" *ngIf="emergencyContact.length > 0">
           <div *ngFor="let contact of emergencyContact.controls; let i = index" class="contact-badge">
             {{ contact.value }}
             <span class="remove-badge" (click)="removeContact(i)">×</span>
