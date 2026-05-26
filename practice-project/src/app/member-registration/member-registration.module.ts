@@ -31,6 +31,7 @@ import { MemberFormComponent } from './components/member-form/member-form.compon
 import { ProfileFormPracticeComponent } from './components/profile-form-practice/profile-form-practice.component';
 import { JobApplicationFormPracticeComponent } from './components/job-application-form-practice/job-application-form-practice.component';
 import { EventRegistrationFormPracticeComponent } from './components/event-registration-form-practice/event-registration-form-practice.component';
+import { MemberformTestComponent } from './components/memberform-test/memberform-test.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { EventRegistrationFormPracticeComponent } from './components/event-regis
     MemberFormComponent,
     ProfileFormPracticeComponent,
     JobApplicationFormPracticeComponent,
-    EventRegistrationFormPracticeComponent
+    EventRegistrationFormPracticeComponent,
+    MemberformTestComponent
   ],
   imports: [
     CommonModule,
