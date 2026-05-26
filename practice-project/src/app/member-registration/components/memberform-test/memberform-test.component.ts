@@ -13,6 +13,7 @@ import {
 })
 export class MemberformTestComponent implements OnInit {
   personalDetailsForm!: FormGroup;
+  apiResponse = [{ firstName: 'John', lastName: 'Doe' },{ firstName: 'Jane', lastName: 'Smith' }];
 
   constructor(private fb: FormBuilder) {}
 
@@ -88,5 +89,12 @@ export class MemberformTestComponent implements OnInit {
       zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
       country: ['India', Validators.required],
     });
+  }
+  onSubmit(): void {
+    if (this.personalDetailsForm.valid) {
+      console.log('Form Submitted', this.personalDetailsForm.value);
+    } else {
+      console.log('Form is invalid');
+    }
   }
 }
