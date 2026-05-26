@@ -10,6 +10,7 @@ import { ProfileFormComponent } from './playground/components/profile-form/profi
 import { ProfileFormPracticeComponent } from './components/profile-form-practice/profile-form-practice.component';
 import { JobApplicationFormPracticeComponent } from './components/job-application-form-practice/job-application-form-practice.component';
 import { EventRegistrationFormPracticeComponent } from './components/event-registration-form-practice/event-registration-form-practice.component';
+import { MemberformTestComponent } from './components/memberform-test/memberform-test.component';
 
 const routes: Routes = [
   { path: '', component: MphMemberRegistrationComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileFormPracticeComponent},
   { path: 'job-application-form', component: JobApplicationFormPracticeComponent },
   { path: 'event-registration-form', component: EventRegistrationFormPracticeComponent },
+  {path: 'memberform',component:MemberformTestComponent},
   {
     path: 'playground',
     loadChildren: () =>
