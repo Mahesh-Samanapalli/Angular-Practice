@@ -14,233 +14,247 @@
     </div>
   </div>
 
-  <form class="member-form">
-    <!-- Policy Holder Details -->
-    <section class="form-section">
-      <div class="section-header">
-        <div>
-          <h2>Policy Holder Details</h2>
-          <p>Basic information of the primary insured member.</p>
-        </div>
-        <span class="section-badge">Primary</span>
-      </div>
-
-      <div class="form-grid">
-        <div class="form-field">
-          <label>First Name</label>
-          <input type="text" placeholder="Enter first name" />
-        </div>
-
-        <div class="form-field">
-          <label>Last Name</label>
-          <input type="text" placeholder="Enter last name" />
-        </div>
-
-        <div class="form-field">
-          <label>Date of Birth</label>
-          <input type="date" />
-        </div>
-
-        <div class="form-field">
-          <label>Gender</label>
-          <select>
-            <option value="">Select gender</option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Other</option>
-          </select>
-        </div>
-
-        <div class="form-field">
-          <label>Mobile Number</label>
-          <input type="text" placeholder="Enter mobile number" />
-        </div>
-
-        <div class="form-field">
-          <label>Email Address</label>
-          <input type="email" placeholder="Enter email address" />
-        </div>
-
-        <div class="form-field">
-          <label>Occupation</label>
-          <input type="text" placeholder="Enter occupation" />
-        </div>
-
-        <div class="form-field">
-          <label>Annual Income</label>
-          <input type="text" placeholder="Enter annual income" />
-        </div>
-      </div>
-    </section>
-
-    <!-- Nominee Details -->
-    <section class="form-section">
-      <div class="section-header">
-        <div>
-          <h2>Nominee Details</h2>
-          <p>Nominee information for claim settlement and policy records.</p>
-        </div>
-      </div>
-
-      <div class="form-grid">
-        <div class="form-field">
-          <label>Nominee Name</label>
-          <input type="text" placeholder="Enter nominee name" />
-        </div>
-
-        <div class="form-field">
-          <label>Relationship</label>
-          <select>
-            <option value="">Select relationship</option>
-            <option>Father</option>
-            <option>Mother</option>
-            <option>Spouse</option>
-            <option>Brother</option>
-            <option>Sister</option>
-            <option>Son</option>
-            <option>Daughter</option>
-          </select>
-        </div>
-
-        <div class="form-field">
-          <label>Date of Birth</label>
-          <input type="date" />
-        </div>
-
-        <div class="form-field">
-          <label>Mobile Number</label>
-          <input type="text" placeholder="Enter nominee mobile number" />
-        </div>
-        <div class="form-field">
-          <label>Nominee percentage</label>
-          <input type="number" placeholder="Enter nominee percentage" />
-        </div>
-
-        <div class="form-field full-width">
-          <label>Nominee Address</label>
-          <textarea rows="3" placeholder="Enter nominee address"></textarea>
-        </div>
-      </div>
-      <div class="nominee-action-row">
-        <button type="button" class="add-nominee-btn">
-          <span class="add-icon">+</span>
-          <span>Add Nominee</span>
-        </button>
-      </div>
-    </section>
-
-    <!-- Communication Details -->
-    <section class="form-section">
-      <div class="section-header">
-        <div>
-          <h2>Communication Details</h2>
-          <p>Contact details used for policy updates and communication.</p>
-        </div>
-      </div>
-
-      <div class="form-grid">
-        <div class="form-field">
-          <label>Primary Email</label>
-          <input type="email" placeholder="Enter primary email" />
-        </div>
-
-        <div class="form-field">
-          <label>Alternate Email</label>
-          <input type="email" placeholder="Enter alternate email" />
-        </div>
-
-        <div class="form-field">
-          <label>Primary Mobile</label>
-          <input type="text" placeholder="Enter primary mobile" />
-        </div>
-
-        <div class="form-field">
-          <label>Alternate Mobile</label>
-          <input type="text" placeholder="Enter alternate mobile" />
-        </div>
-
-        <div class="form-field">
-          <label>Preferred Communication</label>
-          <select>
-            <option value="">Select preference</option>
-            <option>Email</option>
-            <option>SMS</option>
-            <option>WhatsApp</option>
-            <option>Phone Call</option>
-          </select>
-        </div>
-
-        <div class="form-field">
-          <label>Language Preference</label>
-          <select>
-            <option value="">Select language</option>
-            <option>English</option>
-            <option>Hindi</option>
-            <option>Telugu</option>
-          </select>
-        </div>
-      </div>
-    </section>
-
-    <!-- Address Details -->
-    <section class="form-section">
-      <div class="section-header">
-        <div>
-          <h2>Address Details</h2>
-          <p>Permanent and communication address details.</p>
-        </div>
-      </div>
-
-      <div class="address-block">
-        <h3>Permanent Address</h3>
-
-        <div class="form-grid">
-          <div class="form-field full-width">
-            <label>Address Line 1</label>
-            <input type="text" placeholder="House no, street, area" />
+  <form [formGroup]="personalDetailsForm">
+    <div formArrayName="memberForm">
+      <div
+        class="member-form"
+        *ngFor="let member of memberFormArray.controls; let i = index"
+        [formGroupName]="i"
+      >
+        >
+        <section class="form-section" formGroupName="basicDetails">
+          <div class="section-header">
+            <div>
+              <h2>Policy Holder Details</h2>
+              <p>Basic information of the primary insured member.</p>
+            </div>
+            <span class="section-badge">Primary</span>
           </div>
 
-          <div class="form-field full-width">
-            <label>Address Line 2</label>
-            <input type="text" placeholder="Landmark or additional address" />
+          <div class="form-grid">
+            <div class="form-field">
+              <label>First Name</label>
+              <input type="text" placeholder="Enter first name" formControlName="firstName" />
+            </div>
+
+            <div class="form-field">
+              <label>Last Name</label>
+              <input type="text" placeholder="Enter last name" formControlName="lastName" />
+            </div>
+
+            <div class="form-field">
+              <label>Date of Birth</label>
+              <input type="date" formControlName="dateOfBirth" />
+            </div>
+
+            <div class="form-field">
+              <label>Gender</label>
+              <select formControlName="gender">
+                <option value="">Select gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Mobile Number</label>
+              <input type="text" placeholder="Enter mobile number" formControlName="mobileNumber" />
+            </div>
+
+            <div class="form-field">
+              <label>Email Address</label>
+              <input type="email" placeholder="Enter email address" formControlName="emailId" />
+            </div>
+
+            <div class="form-field">
+              <label>Occupation</label>
+              <input type="text" placeholder="Enter occupation" formControlName="occupation" />
+            </div>
+
+            <div class="form-field">
+              <label>Annual Income</label>
+              <input type="text" placeholder="Enter annual income" formControlName="annualIncome" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Nominee Details -->
+        <section class="form-section" formGroupName="nomineeDetails">
+          <div class="section-header">
+            <div>
+              <h2>Nominee Details</h2>
+              <p>
+                Nominee information for claim settlement and policy records.
+              </p>
+            </div>
           </div>
 
-          <div class="form-field">
-            <label>City</label>
-            <input type="text" placeholder="Enter city" />
+          <div class="form-grid">
+            <div class="form-field">
+              <label>Nominee Name</label>
+              <input type="text" placeholder="Enter nominee name" formControlName="nomineeName" />
+            </div>
+
+            <div class="form-field">
+              <label>Relationship</label>
+              <select  formControlName="nomineeRelation">
+                <option value="">Select relationship</option>
+                <option>Father</option>
+                <option>Mother</option>
+                <option>Spouse</option>
+                <option>Brother</option>
+                <option>Sister</option>
+                <option>Son</option>
+                <option>Daughter</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Date of Birth</label>
+              <input type="date" formControlName="nomineeDateOfBirth" />
+            </div>
+
+            <div class="form-field">
+              <label>Mobile Number</label>
+              <input type="text" placeholder="Enter nominee mobile number" formControlName="nomineeMobileNumber" />
+            </div>
+            <div class="form-field">
+              <label>Nominee percentage</label>
+              <input type="number" placeholder="Enter nominee percentage" formControlName="nomineePercentage" />
+            </div>
+
+            <div class="form-field full-width">
+              <label>Nominee Address</label>
+              <textarea rows="3" placeholder="Enter nominee address" formControlName="nomineeAddress"></textarea>
+            </div>
+          </div>
+          <div class="nominee-action-row">
+            <button type="button" class="add-nominee-btn">
+              <span class="add-icon">+</span>
+              <span>Add Nominee</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Communication Details -->
+        <section class="form-section" formGroupName="communicationDetails">
+          <div class="section-header">
+            <div>
+              <h2>Communication Details</h2>
+              <p>Contact details used for policy updates and communication.</p>
+            </div>
           </div>
 
-          <div class="form-field">
-            <label>State</label>
-            <select>
-              <option value="">Select state</option>
-              <option>Telangana</option>
-              <option>Andhra Pradesh</option>
-              <option>Karnataka</option>
-              <option>Tamil Nadu</option>
-              <option>Maharashtra</option>
-            </select>
+          <div class="form-grid">
+            <div class="form-field">
+              <label>Primary Email</label>
+              <input type="email" placeholder="Enter primary email" formControlName="primaryEmail" />
+            </div>
+
+            <div class="form-field">
+              <label>Alternate Email</label>
+              <input type="email" placeholder="Enter alternate email" formControlName="alternateEmail" />
+            </div>
+
+            <div class="form-field">
+              <label>Primary Mobile</label>
+              <input type="text" placeholder="Enter primary mobile" formControlName="primaryMobile" />
+            </div>
+
+            <div class="form-field">
+              <label>Alternate Mobile</label>
+              <input type="text" placeholder="Enter alternate mobile" formControlName="alternateMobile" />
+            </div>
+
+            <div class="form-field">
+              <label>Preferred Communication</label>
+              <select formControlName="preferredCommunication">
+                <option value="">Select preference</option>
+                <option>Email</option>
+                <option>SMS</option>
+                <option>WhatsApp</option>
+                <option>Phone Call</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Language Preference</label>
+              <select formControlName="languagePreference">
+                <option value="">Select language</option>
+                <option>English</option>
+                <option>Hindi</option>
+                <option>Telugu</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- Address Details -->
+        <section class="form-section" formGroupName="addressDetails">
+          <div class="section-header">
+            <div>
+              <h2>Address Details</h2>
+              <p>Permanent and communication address details.</p>
+            </div>
           </div>
 
-          <div class="form-field">
-            <label>Pincode</label>
-            <input type="text" placeholder="Enter pincode" />
-          </div>
+          <div class="address-block">
+            <h3>Permanent Address</h3>
 
-          <div class="form-field">
-            <label>Country</label>
-            <input type="text" value="India" />
+            <div class="form-grid">
+              <div class="form-field full-width">
+                <label>Address Line 1</label>
+                <input type="text" placeholder="House no, street, area" formControlName="permanentAddressLine1" />
+              </div>
+
+              <div class="form-field full-width">
+                <label>Address Line 2</label>
+                <input
+                  type="text"
+                  placeholder="Landmark or additional address"
+                  formControlName="permanentAddressLine2"
+                />
+              </div>
+
+              <div class="form-field">
+                <label>City</label>
+                <input type="text" placeholder="Enter city" formControlName="city" />
+              </div>
+
+              <div class="form-field">
+                <label>State</label>
+                <select formControlName="state">
+                  <option value="">Select state</option>
+                  <option>Telangana</option>
+                  <option>Andhra Pradesh</option>
+                  <option>Karnataka</option>
+                  <option>Tamil Nadu</option>
+                  <option>Maharashtra</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label>Pincode</label>
+                <input type="text" placeholder="Enter pincode" formControlName="pincode" />
+              </div>
+
+              <div class="form-field">
+                <label>Country</label>
+                <input type="text" value="India" formControlName="country" />
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
-    </section>
+    </div>
 
     <!-- Actions -->
     <div class="form-actions">
       <button type="button" class="btn secondary-btn">Cancel</button>
       <button type="button" class="btn outline-btn">Save Draft</button>
-      <button type="submit" class="btn primary-btn">
-        Submit Member Details
+      <button type="submit" class="btn primary-btn" click="onSubmit()">
+        Submit Member Details 
       </button>
     </div>
   </form>
