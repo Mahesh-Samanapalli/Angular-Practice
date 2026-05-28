@@ -93,6 +93,7 @@ export class MemberformTestComponent implements OnInit {
   onSubmit(): void {
     if (this.personalDetailsForm.valid) {
       console.log('Form Submitted', this.personalDetailsForm.value);
+      console.log('API Response', this.apiResponse);
     } else {
       console.log('Form is invalid');
     }
