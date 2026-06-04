@@ -18,8 +18,8 @@
     <div formArrayName="memberForm">
       <div
         class="member-form"
-        *ngFor="let member of memberFormArray.controls; let i = index"
-        [formGroupName]="i"
+        *ngFor="let member of memberFormArray.controls; let memberIndex = index"
+        [formGroupName]="memberIndex"
       >
         <section class="form-section" formGroupName="basicDetails">
           <div class="section-header">
@@ -89,7 +89,7 @@
             </div>
           </div>
 
-          <div *ngFor = "let nominee of getnomineeDetailsArray(i).controls; let i = index" [formGroupName]="i">
+          <div *ngFor = "let nominee of getnomineeDetailsArray(memberIndex).controls; let nomineeIndex = index" [formGroupName]="nomineeIndex">
             <div class="form-grid">
               <div class="form-field">
                 <label>Nominee Name</label>
@@ -123,7 +123,7 @@
             </div>
           </div>
           <div class="nominee-action-row">
-            <button type="button" class="add-nominee-btn" (click)="addNominee(i)">
+            <button type="button" class="add-nominee-btn" (click)="addNominee(memberIndex)">
               <span class="add-icon">+</span>
               <span>Add Nominee</span>
             </button>
