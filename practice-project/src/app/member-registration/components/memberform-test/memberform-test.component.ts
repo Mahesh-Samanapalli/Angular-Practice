@@ -13,7 +13,7 @@ import {
 })
 export class MemberformTestComponent implements OnInit {
   personalDetailsForm!: FormGroup;
-  apiResponse = [{ firstName: 'John', lastName: 'Doe' },{ firstName: 'Jane', lastName: 'Smith' }];
+  apiResponse = [{ firstName: 'John', lastName: 'Doe' }];
 
   constructor(private fb: FormBuilder) {}
 
