@@ -14,14 +14,13 @@
     </div>
   </div>
 
-  <form [formGroup]="personalDetailsForm">
+  <form [formGroup]="personalDetailsForm" (ngSubmit)="onSubmit()">
     <div formArrayName="memberForm">
       <div
         class="member-form"
         *ngFor="let member of memberFormArray.controls; let i = index"
         [formGroupName]="i"
       >
-        >
         <section class="form-section" formGroupName="basicDetails">
           <div class="section-header">
             <div>
@@ -159,17 +158,17 @@
 
             <div class="form-field">
               <label>Primary Mobile</label>
-              <input type="text" placeholder="Enter primary mobile" formControlName="primaryMobile" />
+              <input type="text" placeholder="Enter primary mobile" formControlName="primaryMobileNumber" />
             </div>
 
             <div class="form-field">
               <label>Alternate Mobile</label>
-              <input type="text" placeholder="Enter alternate mobile" formControlName="alternateMobile" />
+              <input type="text" placeholder="Enter alternate mobile" formControlName="alternateMobileNumber" />
             </div>
 
             <div class="form-field">
               <label>Preferred Communication</label>
-              <select formControlName="preferredCommunication">
+              <select formControlName="preferredCommunicationMethod">
                 <option value="">Select preference</option>
                 <option>Email</option>
                 <option>SMS</option>
@@ -205,7 +204,7 @@
             <div class="form-grid">
               <div class="form-field full-width">
                 <label>Address Line 1</label>
-                <input type="text" placeholder="House no, street, area" formControlName="permanentAddressLine1" />
+                <input type="text" placeholder="House no, street, area" formControlName="addressLine1" />
               </div>
 
               <div class="form-field full-width">
@@ -213,7 +212,7 @@
                 <input
                   type="text"
                   placeholder="Landmark or additional address"
-                  formControlName="permanentAddressLine2"
+                  formControlName="addressLine2"
                 />
               </div>
 
@@ -236,7 +235,7 @@
 
               <div class="form-field">
                 <label>Pincode</label>
-                <input type="text" placeholder="Enter pincode" formControlName="pincode" />
+                <input type="text" placeholder="Enter pincode" formControlName="zipCode" />
               </div>
 
               <div class="form-field">
@@ -253,7 +252,7 @@
     <div class="form-actions">
       <button type="button" class="btn secondary-btn">Cancel</button>
       <button type="button" class="btn outline-btn">Save Draft</button>
-      <button type="submit" class="btn primary-btn" click="onSubmit()">
+      <button type="submit" class="btn primary-btn">
         Submit Member Details 
       </button>
     </div>
