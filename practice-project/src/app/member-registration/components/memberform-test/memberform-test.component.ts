@@ -32,14 +32,20 @@ export class MemberformTestComponent implements OnInit {
     return this.personalDetailsForm.get('memberForm') as FormArray;
   }
 
+  getnomineeDetailsArray(memberIndex: number): FormArray {
+    return this.memberFormArray.controls[memberIndex].get('nomineeDetailsArray') as FormArray;
+  }
+
   addMember(): void {
-    this.memberFormArray.push(this.createMemberFormGroup());
+    this.apiResponse.forEach(() => {
+      this.memberFormArray.push(this.createMemberFormGroup());
+    });
   }
 
   createMemberFormGroup(): FormGroup {
     return this.fb.group({
       basicDetails: this.createBasicDetailsFormGroup(),
-      nomineeDetails: this.createNomineeDetailsFormGroup(),
+      nomineeDetailsArray: this.createNomineeDetailsFormArray(),
       communicationDetails: this.createCommunicationDetailsFormGroup(),
       addressDetails: this.createAddressDetailsFormGroup(),
     });
@@ -58,15 +64,29 @@ export class MemberformTestComponent implements OnInit {
     });
   }
 
-  createNomineeDetailsFormGroup(): FormGroup {
-    return this.fb.group({
-      nomineeName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
-      nomineeRelation: ['', Validators.required],
-      nomineeDateOfBirth: ['', Validators.required],
-      nomineeMobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      nomineePercentage: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      nomineeAddress: ['', Validators.required],
-    });
+  createNomineeDetailsFormArray(): FormArray {
+    return this.fb.array([
+      this.fb.group({
+        nomineeName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
+        nomineeRelation: ['', Validators.required],
+        nomineeDateOfBirth: ['', Validators.required],
+        nomineeMobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+        nomineePercentage: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+        nomineeAddress: ['', Validators.required],
+      })
+    ]);
+  }
+
+    createSingleNominee(): FormGroup {
+      return this.fb.group({
+        nomineeName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
+        nomineeRelation: ['', Validators.required],
+        nomineeDateOfBirth: ['', Validators.required],
+        nomineeMobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+        nomineePercentage: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+        nomineeAddress: ['', Validators.required],
+      })
+      
   }
 
   createCommunicationDetailsFormGroup(): FormGroup {
@@ -89,6 +109,12 @@ export class MemberformTestComponent implements OnInit {
       zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
       country: ['India', Validators.required],
     });
+  }
+
+  addNominee(memberIndex: number): void {
+    if(this.getnomineeDetailsArray(memberIndex).length < 4) {
+      this.getnomineeDetailsArray(memberIndex).push(this.createSingleNominee());
+    }
   }
   onSubmit(): void {
     if (this.personalDetailsForm.valid) {

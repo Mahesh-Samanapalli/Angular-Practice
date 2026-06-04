@@ -79,7 +79,7 @@
         </section>
 
         <!-- Nominee Details -->
-        <section class="form-section" formGroupName="nomineeDetails">
+        <section class="form-section" formArrayName="nomineeDetailsArray">
           <div class="section-header">
             <div>
               <h2>Nominee Details</h2>
@@ -89,47 +89,41 @@
             </div>
           </div>
 
-          <div class="form-grid">
-            <div class="form-field">
-              <label>Nominee Name</label>
-              <input type="text" placeholder="Enter nominee name" formControlName="nomineeName" />
-            </div>
+          <div *ngFor = "let nominee of getnomineeDetailsArray(i).controls; let i = index" [formGroupName]="i">
+            <div class="form-grid">
+              <div class="form-field">
+                <label>Nominee Name</label>
+                <input type="text" placeholder="Enter nominee name" formControlName="nomineeName" />
+              </div>
 
-            <div class="form-field">
-              <label>Relationship</label>
-              <select  formControlName="nomineeRelation">
-                <option value="">Select relationship</option>
-                <option>Father</option>
-                <option>Mother</option>
-                <option>Spouse</option>
-                <option>Brother</option>
-                <option>Sister</option>
-                <option>Son</option>
-                <option>Daughter</option>
-              </select>
-            </div>
+              <div class="form-field">
+                <label>Nominee Relation</label>
+                <input type="text" placeholder="Enter nominee relation" formControlName="nomineeRelation" />
+              </div>
 
-            <div class="form-field">
-              <label>Date of Birth</label>
-              <input type="date" formControlName="nomineeDateOfBirth" />
-            </div>
+              <div class="form-field">
+                <label>Nominee Date of Birth</label>
+                <input type="date" formControlName="nomineeDateOfBirth" />
+              </div>
 
-            <div class="form-field">
-              <label>Mobile Number</label>
-              <input type="text" placeholder="Enter nominee mobile number" formControlName="nomineeMobileNumber" />
-            </div>
-            <div class="form-field">
-              <label>Nominee percentage</label>
-              <input type="number" placeholder="Enter nominee percentage" formControlName="nomineePercentage" />
-            </div>
+              <div class="form-field">
+                <label>Nominee Mobile Number</label>
+                <input type="text" placeholder="Enter nominee mobile number" formControlName="nomineeMobileNumber" />
+              </div>
 
-            <div class="form-field full-width">
-              <label>Nominee Address</label>
-              <textarea rows="3" placeholder="Enter nominee address" formControlName="nomineeAddress"></textarea>
+              <div class="form-field">
+                <label>Nominee Percentage</label>
+                <input type="text" placeholder="Enter nominee percentage" formControlName="nomineePercentage" />
+              </div>
+
+              <div class="form-field">
+                <label>Nominee Address</label>
+                <input type="text" placeholder="Enter nominee address" formControlName="nomineeAddress" />
+              </div>
             </div>
           </div>
           <div class="nominee-action-row">
-            <button type="button" class="add-nominee-btn">
+            <button type="button" class="add-nominee-btn" (click)="addNominee(i)">
               <span class="add-icon">+</span>
               <span>Add Nominee</span>
             </button>
