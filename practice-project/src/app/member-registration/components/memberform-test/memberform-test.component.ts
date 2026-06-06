@@ -66,14 +66,8 @@ export class MemberformTestComponent implements OnInit {
 
   createNomineeDetailsFormArray(): FormArray {
     return this.fb.array([
-      this.fb.group({
-        nomineeName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
-        nomineeRelation: ['', Validators.required],
-        nomineeDateOfBirth: ['', Validators.required],
-        nomineeMobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-        nomineePercentage: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-        nomineeAddress: ['', Validators.required],
-      })
+      this.createSingleNominee(),
+      this.checkNomineePercentage(this.memberFormArray.length)
     ]);
   }
 
@@ -127,4 +121,18 @@ export class MemberformTestComponent implements OnInit {
   removeNominee(memberIndex: number,nomineeIndex: number): void {  
     this.getnomineeDetailsArray(memberIndex).removeAt(nomineeIndex);
   };
+
+  checkNomineePercentage(memberIndex: number): void {
+    const nomineeArray = this.getnomineeDetailsArray(memberIndex);
+    const totalNomineePercentage = nomineeArray.controls.reduce((total,nomineeGroup)=>{
+        const percentageControl = nomineeGroup.get('nomineePercentage');
+        const percentageValue = percentageControl?.value ? parseFloat(percentageControl.value) : 0;
+        return total + percentageValue;
+    },0);
+    if(totalNomineePercentage > 100) {
+      nomineeArray.setErrors({ percentageExceeds: true });
+    } else {
+      nomineeArray.setErrors(null);
+    }
+}
 }
