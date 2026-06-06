@@ -351,7 +351,8 @@
 .nominee-action-row {
   grid-column: span 4;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  gap: 12px;
   margin-top: 4px;
 }
 

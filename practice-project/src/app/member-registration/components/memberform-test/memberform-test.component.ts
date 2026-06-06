@@ -124,4 +124,5 @@ export class MemberformTestComponent implements OnInit {
       console.log('Form is invalid');
     }
   }
+  removeNominee(memberIndex: number): void {  };
 }
