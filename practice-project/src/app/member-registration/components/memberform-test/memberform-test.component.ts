@@ -124,5 +124,7 @@ export class MemberformTestComponent implements OnInit {
       console.log('Form is invalid');
     }
   }
-  removeNominee(memberIndex: number): void {  };
+  removeNominee(memberIndex: number,nomineeIndex: number): void {  
+    this.getnomineeDetailsArray(memberIndex).removeAt(nomineeIndex);
+  };
 }

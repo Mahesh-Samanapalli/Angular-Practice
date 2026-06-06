@@ -33,12 +33,20 @@
           <div class="form-grid">
             <div class="form-field">
               <label>First Name</label>
-              <input type="text" placeholder="Enter first name" formControlName="firstName" />
+              <input
+                type="text"
+                placeholder="Enter first name"
+                formControlName="firstName"
+              />
             </div>
 
             <div class="form-field">
               <label>Last Name</label>
-              <input type="text" placeholder="Enter last name" formControlName="lastName" />
+              <input
+                type="text"
+                placeholder="Enter last name"
+                formControlName="lastName"
+              />
             </div>
 
             <div class="form-field">
@@ -58,22 +66,38 @@
 
             <div class="form-field">
               <label>Mobile Number</label>
-              <input type="text" placeholder="Enter mobile number" formControlName="mobileNumber" />
+              <input
+                type="text"
+                placeholder="Enter mobile number"
+                formControlName="mobileNumber"
+              />
             </div>
 
             <div class="form-field">
               <label>Email Address</label>
-              <input type="email" placeholder="Enter email address" formControlName="emailId" />
+              <input
+                type="email"
+                placeholder="Enter email address"
+                formControlName="emailId"
+              />
             </div>
 
             <div class="form-field">
               <label>Occupation</label>
-              <input type="text" placeholder="Enter occupation" formControlName="occupation" />
+              <input
+                type="text"
+                placeholder="Enter occupation"
+                formControlName="occupation"
+              />
             </div>
 
             <div class="form-field">
               <label>Annual Income</label>
-              <input type="text" placeholder="Enter annual income" formControlName="annualIncome" />
+              <input
+                type="text"
+                placeholder="Enter annual income"
+                formControlName="annualIncome"
+              />
             </div>
           </div>
         </section>
@@ -89,16 +113,33 @@
             </div>
           </div>
 
-          <div *ngFor = "let nominee of getnomineeDetailsArray(memberIndex).controls; let nomineeIndex = index" [formGroupName]="nomineeIndex">
-            <div class="form-grid">
+          <div
+            *ngFor="
+              let nominee of getnomineeDetailsArray(memberIndex).controls;
+              let nomineeIndex = index
+            "
+            [formGroupName]="nomineeIndex"
+          >
+            <div
+              class="form-grid nominee-grid"
+              style="border: 1px solid black; padding: 16px; border-radius: 8px"
+            >
               <div class="form-field">
                 <label>Nominee Name</label>
-                <input type="text" placeholder="Enter nominee name" formControlName="nomineeName" />
+                <input
+                  type="text"
+                  placeholder="Enter nominee name"
+                  formControlName="nomineeName"
+                />
               </div>
 
               <div class="form-field">
                 <label>Nominee Relation</label>
-                <input type="text" placeholder="Enter nominee relation" formControlName="nomineeRelation" />
+                <input
+                  type="text"
+                  placeholder="Enter nominee relation"
+                  formControlName="nomineeRelation"
+                />
               </div>
 
               <div class="form-field">
@@ -108,29 +149,56 @@
 
               <div class="form-field">
                 <label>Nominee Mobile Number</label>
-                <input type="text" placeholder="Enter nominee mobile number" formControlName="nomineeMobileNumber" />
+                <input
+                  type="text"
+                  placeholder="Enter nominee mobile number"
+                  formControlName="nomineeMobileNumber"
+                />
               </div>
 
               <div class="form-field">
                 <label>Nominee Percentage</label>
-                <input type="text" placeholder="Enter nominee percentage" formControlName="nomineePercentage" />
+                <input
+                  type="text"
+                  placeholder="Enter nominee percentage"
+                  formControlName="nomineePercentage"
+                />
               </div>
 
               <div class="form-field">
                 <label>Nominee Address</label>
-                <input type="text" placeholder="Enter nominee address" formControlName="nomineeAddress" />
+                <input
+                  type="text"
+                  placeholder="Enter nominee address"
+                  formControlName="nomineeAddress"
+                />
+              </div>
+              <div class="remove-nominee"
+               *ngIf="nomineeIndex > 0"
+              >
+                <button
+                  type="button"
+                  class="add-nominee-btn"
+                  (click)="removeNominee(memberIndex, nomineeIndex)"
+                >
+                  <span class="add-icon">-</span>
+                  <span>Remove Nominee</span>
+                </button>
               </div>
             </div>
           </div>
-          <div class="nominee-action-row">
-            <button type="button" class="add-nominee-btn" (click)="addNominee(memberIndex)">
-              <span class="add-icon">+</span>
-              <span>Add Nominee</span>
-            </button>
-             <button type="button" class="add-nominee-btn" (click)="removeNominee(memberIndex)">
-              <span class="add-icon">-</span>
-              <span>Remove Nominee</span>
-            </button>
+          <div class="nominee-action-row"
+           *ngIf="getnomineeDetailsArray(memberIndex).length < 4">
+            <div>
+              <button
+                type="button"
+                class="add-nominee-btn"
+                (click)="addNominee(memberIndex)"
+              >
+                <span class="add-icon">+</span>
+                <span>Add Nominee</span>
+              </button>
+            </div>
           </div>
         </section>
 
@@ -146,22 +214,38 @@
           <div class="form-grid">
             <div class="form-field">
               <label>Primary Email</label>
-              <input type="email" placeholder="Enter primary email" formControlName="primaryEmail" />
+              <input
+                type="email"
+                placeholder="Enter primary email"
+                formControlName="primaryEmail"
+              />
             </div>
 
             <div class="form-field">
               <label>Alternate Email</label>
-              <input type="email" placeholder="Enter alternate email" formControlName="alternateEmail" />
+              <input
+                type="email"
+                placeholder="Enter alternate email"
+                formControlName="alternateEmail"
+              />
             </div>
 
             <div class="form-field">
               <label>Primary Mobile</label>
-              <input type="text" placeholder="Enter primary mobile" formControlName="primaryMobileNumber" />
+              <input
+                type="text"
+                placeholder="Enter primary mobile"
+                formControlName="primaryMobileNumber"
+              />
             </div>
 
             <div class="form-field">
               <label>Alternate Mobile</label>
-              <input type="text" placeholder="Enter alternate mobile" formControlName="alternateMobileNumber" />
+              <input
+                type="text"
+                placeholder="Enter alternate mobile"
+                formControlName="alternateMobileNumber"
+              />
             </div>
 
             <div class="form-field">
@@ -202,7 +286,11 @@
             <div class="form-grid">
               <div class="form-field full-width">
                 <label>Address Line 1</label>
-                <input type="text" placeholder="House no, street, area" formControlName="addressLine1" />
+                <input
+                  type="text"
+                  placeholder="House no, street, area"
+                  formControlName="addressLine1"
+                />
               </div>
 
               <div class="form-field full-width">
@@ -216,7 +304,11 @@
 
               <div class="form-field">
                 <label>City</label>
-                <input type="text" placeholder="Enter city" formControlName="city" />
+                <input
+                  type="text"
+                  placeholder="Enter city"
+                  formControlName="city"
+                />
               </div>
 
               <div class="form-field">
@@ -233,7 +325,11 @@
 
               <div class="form-field">
                 <label>Pincode</label>
-                <input type="text" placeholder="Enter pincode" formControlName="zipCode" />
+                <input
+                  type="text"
+                  placeholder="Enter pincode"
+                  formControlName="zipCode"
+                />
               </div>
 
               <div class="form-field">
@@ -251,7 +347,7 @@
       <button type="button" class="btn secondary-btn">Cancel</button>
       <button type="button" class="btn outline-btn">Save Draft</button>
       <button type="submit" class="btn primary-btn">
-        Submit Member Details 
+        Submit Member Details
       </button>
     </div>
   </form>
