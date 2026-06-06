@@ -275,7 +275,14 @@
   color: #1d4ed8;
   border: 1px solid #bfdbfe;
 }
-
+.remove-nominee {
+  margin-top:28px;
+}
+.add-nominee-btn:disabled {
+  opacity: 0;
+  cursor: not-allowed;
+  pointer-events: none;
+}
 /* Responsive */
 @media (max-width: 1200px) {
   .form-grid {
